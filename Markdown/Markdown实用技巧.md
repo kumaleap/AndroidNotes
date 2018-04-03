@@ -78,6 +78,29 @@ Markdown 标准(原生)语法中没有表格支持，但现在多数平台已经
 | 内容 | 内容 | 内容 | 内容 |
 | 内容 | 内容 | 条目 | 内容 |
 
+### 无序表格
+
+无序列表前面可以用 `*` `+` `-` 等，结果是相同的。
+有序列表的数字即便不按照顺序排列，结果仍是有序的。
+
+```
+* 内容
+* 内容
+* 内容
+  * 子内容
+  * 子内容
+* 内容
+```
+
+**预览**：
+
+* 内容
+* 内容
+* 内容
+  * 子内容
+  * 子内容
+* 内容
+
 ### 图片及链接
 
 1、行内式链接
@@ -122,7 +145,28 @@ github地址：[github](htttp://www.github.com/wulijie "这里写的内容会在
 
 [![](https://ws3.sinaimg.cn/large/006tNbRwly1fpzi4y1ftsj305r05rq2q.jpg)](http://www.github.com/wulijie)
 
-5、拓展语法（可能在某些平台或者编辑器无法使用，请自测后在使用）
+5、参考式链接
+
+```java
+//在写文章的时候很可能会出现在同一个地方多次引用同一个链接地址
+//使用方式
+[wulijie的github][1]
+[AndroidNotes][2]
+//链接声明
+[1]: http://www.github.com/wulijie
+[2]: https://github.com/wulijie/AndroidNotes "一个神奇的网站"
+[文章]:https://github.com/wulijie/AndroidNotes
+```
+
+**预览**：
+
+如果你喜欢我的文章，请访问[wulijie的github][1]并关注我，另外[AndroidNotes][2]也是个很不错的[文章][]
+
+[1]: http://www.github.com/wulijie
+[2]: https://github.com/wulijie/AndroidNotes "一个神奇的网站"
+[文章]:https://github.com/wulijie/AndroidNotes
+
+6、拓展语法（可能在某些平台或者编辑器无法使用，请自测后在使用）
 
 **在新标签页打开**（在后面添加上 `{:target="_blank"}` 或者使用 HTML 语法）
 
