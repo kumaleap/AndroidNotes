@@ -71,7 +71,7 @@ List<String> accountList = ethAccounts.getAccounts();//返回当前节点持有�
 
 因为Ethereum（以太坊）提供了[JSON-RPC API](https://github.com/ethereum/wiki/wiki/JSON-RPC#web3_clientversion) 可以使用，这样Android还可以使用[JSONRPCHttpClient](http://www.java2s.com/Code/Jar/a/Downloadandroidjsonrpc034jar.htm)调用API 完成接入。
 
-下载jar包，导入AndroidStudio的libs下引入依赖。
+下载 [jar包](http://www.java2s.com/Code/Jar/a/Downloadandroidjsonrpc034jar.htm) ，导入AndroidStudio的libs下，引入依赖。
 
 ```java
 // 获取节点运行geth客户端的版本号 
