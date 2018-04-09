@@ -6,3 +6,7 @@
 
 * [Markdown实用技巧—语法教程](https://github.com/wulijie/AndroidNotes/blob/master/Markdown/Markdown实用技巧.md)
 
+[区块链](https://github.com/wulijie/AndroidNotes/tree/master/BlockChain)
+
+* [Android使用Infura、web3j接入以太坊区块链](https://github.com/wulijie/AndroidNotes/blob/master/BlockChain/使用Infura、Web3j接入以太坊区块链.md)
+
