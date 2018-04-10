@@ -1,4 +1,4 @@
-# 使用Infura、Web3j接入以太坊区块链
+# Android使用Infura、Web3j、Http等方式接入以太坊区块链
 
 ### 接入以太坊区块链的方式
 
@@ -16,7 +16,7 @@ ps：[Infura](https://infura.io/signup) 需要翻墙才能注册过去，有个�
 
 ![](https://ws2.sinaimg.cn/large/006tNc79ly1fq6iv5z53gj30b40afdg4.jpg)
 
-###  [web3j](https://github.com/web3j/web3j)
+###  [web3j](https://github.com/web3j/web3j) 接入方式
 
 1、 [web3j](https://github.com/web3j/web3j)**介绍**
 
@@ -69,7 +69,55 @@ List<String> accountList = ethAccounts.getAccounts();//返回当前节点持有�
 
 ### JSON-RPC API 的接入方式
 
-因为Ethereum（以太坊）提供了[JSON-RPC API](https://github.com/ethereum/wiki/wiki/JSON-RPC#web3_clientversion) 可以使用，这样Android还可以使用[JSONRPCHttpClient](http://www.java2s.com/Code/Jar/a/Downloadandroidjsonrpc034jar.htm)调用API 完成接入。
+因为Ethereum（以太坊）提供了[JSON-RPC API](https://github.com/ethereum/wiki/wiki/JSON-RPC#web3_clientversion) 可以访问。
+
+**JSON-RPC support**
+
+| cpp-ethereum   | go-ethereum | py-ethereum | parity |      |
+| -------------- | ----------- | ----------- | ------ | ---- |
+| JSON-RPC 1.0   | ✓           |             |        |      |
+| JSON-RPC 2.0   | ✓           | ✓           | ✓      | ✓    |
+| Batch requests | ✓           | ✓           | ✓      | ✓    |
+| HTTP           | ✓           | ✓           | ✓      | ✓    |
+| IPC            | ✓           | ✓           |        | ✓    |
+| WS             |             |             |        |      |
+
+1、**Http**
+
+Http是以太坊各种客户端都支持的方式之一，也是终端开发最熟悉的。
+
+```java
+//查阅API 发现需要POST的形式 参数以json的形式 请求
+//这里我测试使用的是xutils3 以请求版本号为例
+String json = "{\"jsonrpc\":\"2.0\",\"method\":\"web3_clientVersion\",\"params\":[],\"id\":67}";
+RequestParams params = new RequestParams("https://mainnet.infura.io/your api-key");
+params.setAsJsonContent(true);
+params.setBodyContent(json);
+x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                Log.e("wlj", "result" + result);
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                Log.e("wlj", ex.toString());
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+
+```
+
+2、**JSONRPC 2.0的方式**
 
 下载 [jar包](http://www.java2s.com/Code/Jar/a/Downloadandroidjsonrpc034jar.htm) ，导入AndroidStudio的libs下，引入依赖。
 
@@ -95,4 +143,5 @@ new Thread(new Runnable() {
 }).start();
 ```
 
-这种方式繁琐复杂，没有web3j好，但是好在灵活自由。
+这两种传参方式繁琐复杂，没有web3j封装的好，但是好在灵活自由。
+
