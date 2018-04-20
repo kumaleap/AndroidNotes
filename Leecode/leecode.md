@@ -178,3 +178,161 @@ class Solution {
 }
 ```
 
+### 两个数组的交集 II
+
+给定两个数组，写一个方法来计算它们的交集。
+
+**例如**:
+给定 *nums1* = `[1, 2, 2, 1]`, *nums2* = `[2, 2]`, 返回 `[2, 2]`.
+
+**注意**
+
+```java
+1.输出结果中每个元素出现的次数，应与元素在两个数组中出现的次数一致。
+2.我们可以不考虑输出结果的顺序。
+3.如果给定的数组已经排好序呢？你将如何优化你的算法？
+4.如果 nums1 的大小比 nums2 小很多，哪种方法更优？
+5.如果nums2的元素存储在磁盘上，内存是有限的，你不能一次加载所有的元素到内存中，你该怎么办？
+```
+
+**思路**
+
+```java
+哈希表来解决问题，将数组nums1哈希到哈希表中，然后继续将数组nums2哈希到哈希表中，如果发生哈希碰撞则统计加1，最后可以得出数组的交集。时间复杂度也就是哈希所有元素的复杂度O(n)。这里我使用HashMap来处理
+```
+
+**代码**
+
+```java
+class Solution {
+    public int[] intersect(int[] nums1, int[] nums2) {
+        ArrayList<Integer> temp = new ArrayList<>();
+        HashMap<Integer, Integer> hashMap = new HashMap<>();
+        for (int i = 0; i < nums1.length; i++) {
+            Integer value = hashMap.get(nums1[i]);
+            hashMap.put(nums1[i], (value == null ? 0 : value) + 1);
+        }
+
+        for (int i = 0; i < nums2.length; i++) {
+            if (hashMap.containsKey(nums2[i]) && hashMap.get(nums2[i]) != 0) {
+                temp.add(nums2[i]);
+                hashMap.put(nums2[i], hashMap.get(nums2[i]) - 1);
+            }
+        }
+        int[] result = new int[temp.size()];
+        for (int i = 0; i < temp.size(); i++) {
+            result[i] = temp.get(i);
+        }
+        return result;
+    }
+}
+```
+
+### 加一
+
+给定一个**非负整数**组成的**非空**数组，在该数的基础上加一，返回一个新的数组。
+
+最高位数字存放在数组的首位， 数组中每个元素只存储一个数字。
+
+你可以假设除了整数 0 之外，这个整数不会以零开头。
+
+**示例**
+
+```java
+输入: [1,2,3]
+输出: [1,2,4]
+解释: 输入数组表示数字 123。
+
+输入: [4,3,2,1]
+输出: [4,3,2,2]
+解释: 输入数组表示数字 4321。
+```
+
+**思路**
+
+```java
+解法的关键在于弄明白什么情况下会产生进位
+
+想让个位+1进位，那么个位必须为9
+
+想让十位+1进位，那么十位必须为9，想要产生进位carry，那么必须由个位进位而来。想让个位进位，个位必须为9.
+
+想让百位+1进位，那么百位必须为9，想要产生进位carry，那么必须由十位进位而来，想让十位进位，那么十位必须为9，想要产生进位，个位必须为9。
+
+根据以上可以推论得出两种情况：
+1.最高位进位
+2.最高位不进位
+
+最高位进位 
+//若最高位进位，那么比他低的位数字都为9，且加1后都为0，需要初始化一个长度为(lenght+1)的新数组，0位置为1代表进位
+
+最高位不进位 
+//若最高位不进位，那么不需要产生新数组，后续数字由更低位计算而来
+```
+
+**代码**
+
+```java
+class Solution {
+    public int[] plusOne(int[] digits) {
+       int carry = 1;
+        for (int i = digits.length - 1; i >= 0; i--) {
+            if (carry == 0) {
+                return digits;
+            }
+            int tmp = digits[i] + carry;
+            carry = tmp / 10;
+            digits[i] = tmp % 10;
+        }
+        if (carry != 0) {
+            int[] result = new int[digits.length + 1];
+            result[0] = 1;
+            return result;
+        }
+        return digits;
+    }
+}
+```
+
+### 移动零
+
+给定一个数组 `nums`, 编写一个函数将所有 `0` 移动到它的末尾，同时保持非零元素的相对顺序。
+
+例如， 定义 `nums = [0, 1, 0, 3, 12]`，调用函数之后， `nums` 应为 `[1, 3, 12, 0, 0]`。
+
+**注意事项**
+
+1. 必须在原数组上操作，不要为一个新数组分配额外空间。
+2. 尽量减少操作总数。
+
+**思路**
+
+```java
+1.遍历数组，使用慢指针去记录非零整数的个数，同时并移动位置
+2.得到0的个数 倒序遍历数组 补位0 知道个数满足记录下的0的个数
+```
+
+**代码**
+
+```java
+class Solution {
+    public void moveZeroes(int[] nums) {
+        int unZeroCount = 0;//慢指针去记录非0整数的个数，同时并移动位置
+        int len = nums.length;
+        for (int i = 0; i < len; i++) {
+            if (nums[i] != 0) {
+                nums[unZeroCount] = nums[i];
+                ++unZeroCount;
+            }
+        }
+        //数组末尾有这么多个0  去补位
+        int zeroCount = len - unZeroCount;
+        for (int i = len - 1; i > 0; i--) {
+            if (zeroCount == 0) return;
+            nums[i] = 0;
+            --zeroCount;
+        }
+    }
+}
+```
+
