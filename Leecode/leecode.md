@@ -336,3 +336,123 @@ class Solution {
 }
 ```
 
+### 两数之和
+
+给定一个整数数组和一个目标值，找出数组中和为目标值的两个数。
+
+你可以假设每个输入只对应一种答案，且同样的元素不能被重复利用。
+
+**示例**
+
+```java
+给定 nums = [2, 7, 11, 15], target = 9
+因为 nums[0] + nums[1] = 2 + 7 = 9
+所以返回 [0, 1]
+```
+
+**思路**
+
+```java
+我希望通过O(n)的时间复杂度完成要求。第一遍O(n)的算法将每个数据a对应的target-a建立查询的数据结构，例如Hash表；第二遍遍历时，查询每个数是否在Hash表中，每次查询时间复杂度为O(1)，总的时间复杂度是O(n)。
+```
+
+**代码**
+
+```java
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) map.put(nums[i], i);
+        for (int i = 0; i < nums.length; i++) {
+            int value = target - nums[i];
+            //差值存在哈希表中且角标不是当前被减数自己 防止 6-3=3这种的清空的出现
+            if (map.containsKey(value) && map.get(value) != i) {
+                int index = map.get(value);
+                if (i < index) return new int[]{i, index};
+                return new int[]{index, i};
+            }
+        }
+        return new int[0];
+    }
+}
+```
+
+### 旋转图像
+
+给定一个 *n* × *n* 的二维矩阵表示一个图像。
+
+将图像顺时针旋转 90 度。
+
+**说明**
+
+```java
+//你必须在原地旋转图像，这意味着你需要直接修改输入的二维矩阵。请不要使用另一个矩阵来旋转图像。
+```
+
+**示例**
+
+```java
+给定 matrix = 
+[
+  [1,2,3],
+  [4,5,6],
+  [7,8,9]
+],
+
+原地旋转输入矩阵，使其变为:
+[
+  [7,4,1],
+  [8,5,2],
+  [9,6,3]
+]
+
+给定 matrix =
+[
+  [ 5, 1, 9,11],
+  [ 2, 4, 8,10],
+  [13, 3, 6, 7],
+  [15,14,12,16]
+], 
+
+原地旋转输入矩阵，使其变为:
+[
+  [15,13, 2, 5],
+  [14, 3, 4, 1],
+  [12, 6, 8, 9],
+  [16, 7,10,11]
+]
+
+```
+
+**思路**
+
+```java
+坐标旋转(顺时针)
+90°（相当于逆时针270°）：a[i][j]=b[j][n-i-1];
+//转置矩阵  行变列
+创建一个新的矩阵：b[i][j] = a[j][i];
+对原矩阵进行求转置矩阵，转置矩阵每一行进行反转即可得到旋转90°后的矩阵
+```
+
+
+
+**代码**
+
+```java
+class Solution {
+    public void rotate(int[][] matrix) {
+        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) return;
+        int length = matrix.length;
+        for (int i = 0; i < length / 2; i++) {
+            for (int j = 0; j < (length + 1) / 2; j++) {
+                int tmp = matrix[i][j];
+                matrix[i][j] = matrix[length - j - 1][i];
+                matrix[length - j - 1][i] = matrix[length - i - 1][length - j - 1];
+                matrix[length - i - 1][length - j - 1] = matrix[j][length - i - 1];
+                matrix[j][length - i - 1] = tmp;
+            }
+        }
+    }
+}
+```
+
