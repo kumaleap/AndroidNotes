@@ -21,4 +21,5 @@
 [Leecode算法训练](https://github.com/wulijie/AndroidNotes/tree/master/Leecode)
 
 * [Leecode算法训练-数组篇](https://github.com/wulijie/AndroidNotes/blob/master/Leecode/leecode.md)
+* [Leecode算法训练-字符串篇](https://github.com/wulijie/AndroidNotes/blob/master/Leecode/leecode-01.md)
 
