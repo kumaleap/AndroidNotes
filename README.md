@@ -18,8 +18,8 @@
 * [Android使用Insight开发比特币区块链浏览器](https://github.com/wulijie/AndroidNotes/blob/master/BlockChain/Android使用Insight开发比特币区块链浏览器.md)
 
 
-[Leecode算法训练](https://github.com/wulijie/AndroidNotes/tree/master/Leecode)
+[LeetCode算法训练](https://github.com/wulijie/AndroidNotes/tree/master/Leecode)
 
-* [Leecode算法训练-数组篇](https://github.com/wulijie/AndroidNotes/blob/master/Leecode/leecode.md)
-* [Leecode算法训练-字符串篇](https://github.com/wulijie/AndroidNotes/blob/master/Leecode/leecode-01.md)
+* [LeetCode算法训练-数组篇](https://github.com/wulijie/AndroidNotes/blob/master/LeetCode/LeetCode.md)
+* [LeetCode算法训练-字符串篇](https://github.com/wulijie/AndroidNotes/blob/master/LeetCode/LeetCode-01.md)
 
