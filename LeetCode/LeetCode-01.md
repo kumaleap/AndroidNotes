@@ -317,3 +317,38 @@ class Solution {
 }
 ```
 
+### 实现strStr()
+
+实现 [strStr()](https://baike.baidu.com/item/strstr/811469) 函数。给定一个 haystack 字符串和一个 needle 字符串，在 haystack 字符串中找出 needle 字符串出现的第一个位置 (从0开始)。如果不存在，则返回  **-1**。
+
+**示例**
+
+```java
+输入: haystack = "hello", needle = "ll"
+输出: 2
+
+输入: haystack = "aaaaa", needle = "bba"
+输出: -1
+```
+
+**注意**:当`needle`是空字符串时，应当返回`0`
+
+**思路**
+
+```java
+这道算法其实是让我们明白 string类内 indexOf() 方法的原理
+当然你使用 indexOf() 方法可以快速完成，但是最好还是知道下原理最好
+原理解释：首先会查找子字符串的头字符在此字符串中第一次出现的位置，再以此位置的下一个位置开始，然后将子字符串的字符依次和此字符串中字符进行比较，如果全部相等，则返回这个头字符在此字符串中的位置；如果有不相等的，则继续在剩下的字符串中查找，继续进行上面的过程，直到查找到子字符串或没有找到返回-1为止。
+```
+
+**代码**
+
+```java
+class Solution {
+        public int strStr(String haystack, String needle) {
+            if (needle == null || needle.length() == 0) return 0;
+            return haystack.indexOf(needle);
+        }
+    }
+```
+
