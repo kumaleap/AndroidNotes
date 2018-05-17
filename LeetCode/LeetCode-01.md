@@ -352,3 +352,125 @@ class Solution {
     }
 ```
 
+### 数数并说
+
+报数序列是指一个整数序列，按照其中的整数的顺序进行报数，得到下一个数。其前五项如下：
+
+```
+1.     1
+2.     11
+3.     21
+4.     1211
+5.     111221
+```
+
+**示例**
+
+```JAVA
+输入: 1
+输出: "1"
+    
+输入: 4
+输出: "1211"
+```
+
+**思路**
+
+```java
+"数数并说，搞清楚什么时候合并数字什么时候不合并数字就可以了。"
+1.并说：超过1个相同的数字连在一起时，并说，也就是"几个几"
+2.不并说：前后数字不同时，不并说，需要单说，也就是"1个几"
+```
+
+**代码**
+
+```java
+class Solution {
+        public String countAndSay(int n) {
+            if (n <= 0) return "-1";
+            String result = "1";
+            for (int i = 1; i < n; i++) {
+                StringBuilder builder = new StringBuilder();
+                int index = 0;
+                while (index < result.length()) {
+                    // 记录值
+                    char val = result.charAt(index);
+                    // 记录连续位数
+                    int count = 0;
+                    // 查找连续位数，碰到不相同的数字时停止。
+                    while (index < result.length() && result.charAt(index) == val) {
+                        index++;
+                        count++;
+                    }
+                    // 追加连续位数到结果中
+                    builder.append(String.valueOf(count));
+                    // 追加连续位数的值到结果中
+                    builder.append(val);
+                }
+                result = builder.toString();
+            }
+            return result;
+        }
+    }
+```
+
+### 最长公共前缀
+
+编写一个函数来查找字符串数组中的最长公共前缀。
+
+如果不存在公共前缀，返回空字符串 `""`。
+
+**示例**
+
+```java
+输入: ["flower","flow","flight"]
+输出: "fl"
+    
+    
+输入: ["dog","racecar","car"]
+输出: ""
+解释: 输入不存在公共前缀。
+
+//说明：所有输入只包含小写字母 a-z 。
+```
+
+**思路**
+
+```java
+1.获取字符串数组中字符串最小的串
+2.使用最小串遍历定位字符串数组中相同串的长度
+```
+
+**代码**
+
+```java
+class Solution {
+        public String longestCommonPrefix(String[] strs) {
+            if (strs.length == 0) return "";
+            int minLen = Integer.MAX_VALUE;
+            for (String str : strs) {
+                minLen = Math.min(minLen, str.length());
+            }
+            int low = 0;
+            int high = minLen;
+            while (low <= high) {///注意是 <=
+                int middle = (low + high) / 2;
+                if (isCommonPrefix(strs, middle))
+                    low = middle + 1;
+                else
+                    high = middle - 1;
+            }
+            return strs[0].substring(0, (low + high) / 2);
+        }
+
+        private boolean isCommonPrefix(String[] strs, int len) {
+            String str1 = strs[0].substring(0, len);
+            for (int i = 0; i < strs.length; i++) {
+                if (!strs[i].startsWith(str1))
+                    return false;
+            }
+            return true;
+        }
+    }
+```
+
