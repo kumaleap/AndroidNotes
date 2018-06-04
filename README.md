@@ -23,3 +23,7 @@
 * [LeetCode算法训练-数组篇](https://github.com/wulijie/AndroidNotes/blob/master/LeetCode/LeetCode.md)
 * [LeetCode算法训练-字符串篇](https://github.com/wulijie/AndroidNotes/blob/master/LeetCode/LeetCode-01.md)
 
+
+[一些总结](https://github.com/wulijie/AndroidNotes/tree/master/experience)
+
+* [发布开源库到Jitpack.io上](https://github.com/wulijie/AndroidNotes/tree/master/experience/发布开源库到Jitpack.io上)
