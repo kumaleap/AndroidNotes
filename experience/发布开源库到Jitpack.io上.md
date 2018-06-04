@@ -43,7 +43,7 @@ group='com.github.your-github-name'
 
 点击`create a new release`
 
-![image-20180604164910914](/var/folders/nx/8w23p7c14_jflgbh92n7xl2w0000gn/T/abnerworks.Typora/image-20180604164910914.png)
+![](https://ws3.sinaimg.cn/large/006tNc79ly1frz8r6cfuoj30gz07lt8o.jpg)
 
 填写版本信息、点发布：
 
