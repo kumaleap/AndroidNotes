@@ -90,3 +90,7 @@ public static Classifier create(AssetManager assetManager, String modelFilename,
 
 代码下载[地址](https://github.com/wulijie/MyTensorFlow)
 
+**效果**
+
+![](https://github.com/wulijie/MyTensorFlow/blob/master/app/src/main/assets/Screenshot.png)
+
