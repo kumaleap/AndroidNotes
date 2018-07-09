@@ -56,3 +56,37 @@ dependencies {
 
 直接使用 Google demo 项目中提供的 [Classifier.java](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/examples/android/src/org/tensorflow/demo/Classifier.java) 和 [TensorFlowImageClassifier.java](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/examples/android/src/org/tensorflow/demo/TensorFlowImageClassifier.java) 这两个类来实现；
 
+其中重点的注意的方法是如下两个：
+
+**TensorFlowImageClassifier**的静态`create`方法；
+
+```java
+/**
+     * Initializes a native TensorFlow session for classifying images.
+     *
+     * @param assetManager The asset manager to be used to load assets.
+     * @param modelFilename The filepath of the model GraphDef protocol buffer.
+     * @param labelFilename The filepath of label file for classes.
+     * @param inputSize The input size. A square image of inputSize x inputSize is assumed.
+     * @param imageMean The assumed mean of the image values.
+     * @param imageStd The assumed std of the image values.
+     * @param inputName The label of the image input node.
+     * @param outputName The label of the output node.
+     * @throws IOException
+     */
+public static Classifier create(AssetManager assetManager, String modelFilename, String labelFilename,int inputSize, int imageMean, float imageStd, String inputName, String outputName)
+```
+
+该方法需要传入模型相关的参数进行初始化，完成后返回一个 `Classifier` 实例。
+
+通过 `Classifier` 对象，我们可以调用其 `recognizeImage` 方法来识别我们传入的 `bitmap` 图像数据，该方法会返回图像类别后对物品类别进行推断的标签结果：
+
+```java
+/**
+ * 进行图片识别
+ */
+ public List<Recognition> recognizeImage(final Bitmap bitmap)
+```
+
+代码下载[地址](https://github.com/wulijie/MyTensorFlow)
+
