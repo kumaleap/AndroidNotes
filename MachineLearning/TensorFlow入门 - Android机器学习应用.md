@@ -1,6 +1,4 @@
-# TensorFlow入门 - Android机器学习应用
-
-### TensorFlow-Android 介绍
+### 相关介绍
 
 Google开源项目[TensorFlow-Android Example](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/android) 中实现了Android 应用中使用`TF模型` 进行机器学习的功能。
 
@@ -8,7 +6,9 @@ Google开源项目[TensorFlow-Android Example](https://github.com/tensorflow/ten
 
 ### 获取已有的数据模型
 
-可以在我的项目示例的 [asstes](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/java/README.md) 中复制，也可以去下载 Google 提供的一个数据模型 [inception5h.zip](https://link.jianshu.com/?t=https%3A%2F%2Fstorage.googleapis.com%2Fdownload.tensorflow.org%2Fmodels%2Finception5h.zip)；其中 `.pb` 后缀的文件是已经训练好的模型，而 `.txt` 对应的是训练数据包含的所有标签。
+可以在我的项目示例的 [asstes](https://github.com/wulijie/MyTensorFlow/tree/master/app/src/main/assets) 中复制，也可以去下载 Google 提供的一个数据模型 [inception5h.zip](https://storage.googleapis.com/download.tensorflow.org/models/inception5h.zip)；
+
+其中 `.pb` 后缀的文件是已经训练好的模型，而 `.txt` 对应的是训练数据包含的所有标签。
 
 这个模型可对 1008 种物品识别分类，具体有哪些类可以查看标签信息，至于每个类别到底训练了多少张图片就不得而知了。
 
@@ -25,7 +25,7 @@ allprojects {
 
 dependencies {
     //使用+号 可以保持最新的版本
-    compile 'org.tensorflow:tensorflow-android:+'
+    implementation 'org.tensorflow:tensorflow-android:+'
 }
 ```
 
@@ -45,7 +45,14 @@ dependencies {
 		--- LICENSE //开源协议
 ```
 
+**代码构建**
 
+```java
+    //权限是必须的
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+```
 
-
+直接使用 Google demo 项目中提供的 [Classifier.java](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/examples/android/src/org/tensorflow/demo/Classifier.java) 和 [TensorFlowImageClassifier.java](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/examples/android/src/org/tensorflow/demo/TensorFlowImageClassifier.java) 这两个类来实现；
 

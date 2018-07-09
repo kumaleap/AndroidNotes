@@ -60,8 +60,6 @@ group='com.github.your-github-name'
 
 此时`jitpack`其实已经在加载中了，耐心等待你的库编译通过就好了。
 
-![image-20180604165437555](/var/folders/nx/8w23p7c14_jflgbh92n7xl2w0000gn/T/abnerworks.Typora/image-20180604165437555.png)
-
 绿色的log 代表你ok了，点击log文件 ，打开可以查看运行配置的信息，也可以看你的库的引用地址，比如：
 
 ![](https://ws3.sinaimg.cn/large/006tNc79ly1frz8zuus4kj30is0ctaaf.jpg)
